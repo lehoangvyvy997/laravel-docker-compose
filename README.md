@@ -47,7 +47,19 @@ exit
 http://lhvv.app.test/
 https://lhvv.app2.test/
 ```
-
-
++ Config connection mysql: install HeideSQL tool then connect with config
+```bash
+Hostname/IP: 127.0.0.1
+User: root
+password: 1
+```
++ Config .env file in laravel project
+```bash
+DB_HOST=172.21.0.4
+DB_PORT=3306
+DB_DATABASE=Your_DB
+DB_USERNAME=root
+DB_PASSWORD=1
+```
 ## Note:
 + each change file .conf in sites folder after you must restart nginx (docker-compose restart nginx)
