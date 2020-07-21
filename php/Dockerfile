@@ -8,6 +8,14 @@ RUN curl -sS https://getcomposer.org/installer | php \
 RUN apt-get update \
    && apt-get install -y git
 
+RUN apt-get install -y vim
+
+USER root
+RUN apt-get install -y default-mysql-client
+# RUN docker-php-ext-install mysqli \
+#     && docker-php-ext-enable mysqli
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
 RUN apt-get install -y p7zip \
     p7zip-full \
     unace \
@@ -23,11 +31,6 @@ RUN apt-get install -y p7zip \
     && rm -rf /var/lib/apt/lists/*
 
 COPY ./config/laravel.ini /usr/local/etc/php/conf.d
-
-# Clean up
-RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    rm /var/log/lastlog /var/log/faillog
 
 WORKDIR /var/www/html
 EXPOSE 9000 
